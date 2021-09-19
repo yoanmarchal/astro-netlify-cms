@@ -1,0 +1,57 @@
+---
+const navPages = [
+    {
+        url: '/',
+        title: 'Home'
+    },
+    {
+        url: '/about',
+        title: 'About'
+    },
+    {
+        url: '/blog',
+        title: 'Blog'
+    },
+    {
+        url: '/contact',
+        title: 'Contact'
+    }
+]
+---
+
+<nav>
+    {navPages.map(({ title, url }) => (
+        <li>
+            <a href={url}>{title}</a>
+        </li>
+    ))}
+</nav>
+
+<style lang="scss">
+    ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 0.25em;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
+    a {
+        padding: 0.25em 0.5em;
+        border-radius: 0.25em;
+
+        &[href]:not(:hover) {
+            text-decoration: none;
+        }
+
+        &[data-current="current item"] {
+            background-color: white;
+        }
+    }
+</style>

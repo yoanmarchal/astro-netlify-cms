@@ -1,0 +1,42 @@
+---
+import Footer from '../components/Footer.astro';
+import MainHead from '../components/MainHead.astro';
+import Nav from '../components/Nav.astro';
+import metadata from '../data/metadata.json';
+
+export let description = metadata.description;
+export let title = metadata.title;
+export let section: string;
+---
+
+<html lang="en" data-current={section}>
+  <head>
+    <MainHead title={title} />
+  </head>
+  <body>
+    <header>
+      <em>
+        <a href="/">{metadata.title}</a>
+      </em>
+      <Nav />
+    </header>
+
+    <main>
+        <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
